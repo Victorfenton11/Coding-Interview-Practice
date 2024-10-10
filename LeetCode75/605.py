@@ -19,28 +19,16 @@ flowerbed[i] is 0 or 1.
 There are no two adjacent flowers in flowerbed.
 0 <= n <= flowerbed.length
 """
-class Solution: # Accepted. Runtime: 129ms - beats 73%, Memory: 16.88MB - beats 77%
+class Solution: # Accepted. Runtime: 120ms - beats 96.63%, Memory: 17MB - beats 6.43%
     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
-        l = len(flowerbed)
         if n == 0:
             return True
-        elif l < n:
-            return False
-        elif l == 1:
-            return not flowerbed[0]
-
-        if not flowerbed[0] and not flowerbed[1]:
-            n -= 1
-            if n == 0:
-                return True
-            flowerbed[0] = 1
-        i = 1
-        while i < l - 1:
-            if not flowerbed[i]:
-                if not flowerbed[i-1] and not flowerbed[i+1]:
-                    n -= 1
-                    if n == 0:
-                        return True
-                    flowerbed[i] = 1
-            i += 1
-        return n == 1 and not flowerbed[i-1] and not flowerbed[i]
+        
+        flowerbed = [0] + flowerbed + [0]
+        for i in range(1, len(flowerbed) - 1):
+            if not flowerbed[i] and not flowerbed[i-1] and not flowerbed[i+1]:
+                n -= 1
+                if n == 0:
+                    return True
+                flowerbed[i] = 1
+        return False
