@@ -23,7 +23,7 @@ Constraints:
 
 Follow up: Could you implement a solution that runs in O(n) time complexity and O(1) space complexity?
 """
-class Solution:
+class Solution: # Accepted. O(n) time, O(1) space
     def increasingTriplet(self, nums: List[int]) -> bool:
         if len(nums) < 3:
             return False
